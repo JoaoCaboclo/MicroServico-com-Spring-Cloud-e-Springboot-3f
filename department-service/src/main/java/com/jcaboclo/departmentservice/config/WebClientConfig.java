@@ -2,6 +2,7 @@ package com.jcaboclo.departmentservice.config;
 
 import com.jcaboclo.departmentservice.client.EmployeeClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.loadbalancer.reactive.LoadBalancedExchangeFilterFunction;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,11 +19,13 @@ public class WebClientConfig {
     @Autowired
     private LoadBalancedExchangeFilterFunction filterFunction;
 
+    @Value("${urls.url-employee}")
+    private String urlEmployee;
 
     @Bean
     public WebClient employeeWebClient() {
         return WebClient.builder()
-                .baseUrl("http://employee-service")
+                .baseUrl(urlEmployee)
                 .filter(filterFunction)
                 .build();
     }

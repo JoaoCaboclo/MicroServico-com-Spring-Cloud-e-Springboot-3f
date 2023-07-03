@@ -6,12 +6,15 @@ import com.jcaboclo.departmentservice.repository.DepartmentRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@RefreshScope
 @RequestMapping("/department")
 public class DepartmentController {
     private static final Logger LOGGER
@@ -23,7 +26,6 @@ public class DepartmentController {
     @Autowired
     private EmployeeClient employeeClient;
 
-    //private List<Department> departments = new ArrayList<>();
     @PostMapping
     public Department add(@RequestBody Department department) {
         LOGGER.info("Department add: {}", department);

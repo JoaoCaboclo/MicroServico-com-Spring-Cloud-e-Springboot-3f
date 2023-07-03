@@ -11,3 +11,6 @@ management:
     sampling:
       probability: 1.0
 
+urls:
+  url-employee: http://employee-service
+
